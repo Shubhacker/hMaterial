@@ -40,8 +40,9 @@ type hMaterialResponse struct{
 }
 
 func initializeRouter(){
+	log.Println("Initiating Router")
 	r := mux.NewRouter()
-
+	log.Println("Router Initiated")
 	r.HandleFunc("/hMaterial", CheckHMaterial).Methods("POST", "OPTIONS")
 	log.Fatal(http.ListenAndServe(":8080", r))
 
@@ -151,6 +152,6 @@ return percentage
 }
 
 func main() {
-	log.Println("Server running at : 9000")
+	log.Println("Server running at : 8080")
 	initializeRouter()
 }
