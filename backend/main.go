@@ -40,12 +40,18 @@ type hMaterialResponse struct{
 }
 
 func initializeRouter(){
-	log.Println("Initiating Router")
 	r := mux.NewRouter()
-	log.Println("Router Initiated")
-	r.HandleFunc("/hMaterial", CheckHMaterial).Methods("POST", "OPTIONS")
+	log.Println(r)
+	r.HandleFunc("/hMaterial", CheckHMaterial).Methods("POST", "OPTIONS")	
+	r.HandleFunc("/okay", PrintOkay).Methods("GET", "OPTIONS")
 	log.Fatal(http.ListenAndServe(":8080", r))
 
+}
+
+func PrintOkay(w http.ResponseWriter,r *http.Request){
+	log.Println("Okay, request received")
+	test := "Connected"
+	json.NewEncoder(w).Encode(&test)
 }
 
 func CheckHMaterial(w http.ResponseWriter,r *http.Request){
