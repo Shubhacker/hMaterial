@@ -44,7 +44,7 @@ func initializeRouter(){
 	log.Println(r)
 	r.HandleFunc("/hMaterial", CheckHMaterial).Methods("POST", "OPTIONS")	
 	r.HandleFunc("/okay", PrintOkay).Methods("GET", "OPTIONS")
-	log.Fatal(http.ListenAndServe(":8080", r))
+	log.Fatal(http.ListenAndServe(":" + os.Getenv("PORT"), r))
 
 }
 
